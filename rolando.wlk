@@ -1,17 +1,22 @@
 object rolando{
-	var suMochila = mochila
+	var mochila = []
+	var capacidadDeMochila = 2
 	
 	method artefactos(){
-		return suMochila.map()
+		return mochila
+	}
+
+	method capacidadDeMOchila(_capacidaDeMochila){
+		capacidadDeMochila = _capacidadDeMochila
 	}
 
 	method puedeLlevar(artefacto){
-		longitud suMochila < suMochila.tamaño()
+		mochila.size() < capacidadDeMochila
 	}
 
-	method recolectar(artefacto){
+	method encontrar(artefacto){
 	 	validarRecolectar(artefacto)
-		suMochila.add(artefacto)
+		mochila.add(artefacto)
 	}
 
 	method validarRecolectar(artefacto){
@@ -37,26 +42,6 @@ object armaduraDeAceroValyrio{
 
 }
 
-object mochila{
-	var artefactos = [collarDivino, libroDeHechizos]
-	var tamaño = 2
-
-	method cantidadArtefactos(){
-		return longitud
-	}
-
-	method tamaño(){
-		return tamaño		
-	}
-
-	method tamaño(_tamaño){
-		tamaño = _tamaño
-	}
-
-	method esVacia(){
-		return tamaño == 0
-	}
-}
 
 //test
 rolando.suMochila.esVacia()
