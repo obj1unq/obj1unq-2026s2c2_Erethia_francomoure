@@ -1,14 +1,36 @@
+object erethia{
+	const enemigos = #{caterina, archibaldo, astra}
+
+	method enemigos(){
+		return enemigos
+	}
+
+//debo hacer un bloque donde veo si un enemigo en particular es vencible
+
+	method enemigosVencibles(personaje){
+		return enemigos.filter({enemigo => enemigo.poderDePelea() < personaje.poderDePelea()})
+	}//y usar ese bloque aca
+
+	method moradasConquistables(personaje){
+		return self.enemigosVencibles(personaje).map({enemigo => enemigo.morada()})
+	}
+
+	method esPoderoso(personaje) {
+		return self.enemigosVencibles(personaje).length() == enemigos.length()
+	}//y aca al modificar esto para usar directamente el .all()
+	//.all()
+}
+
 object rolando{
 	const mochila = #{}
 	var capacidadDeMochila = 2
 	var hogar = castillo
 	var encuentros = []
 	var poderBase = 5
-	var poderPelea = 0
+
 
 	method batallar(){
 		poderBase += 1
-		poderPelea = poderBase + self.poderArtefactos()
 //sigo por aca 
 		
 	}
@@ -26,7 +48,7 @@ object rolando{
 	}
 
 	method poderDePelea(){
-		return poderPelea
+		return poderBase + self.poderArtefactos()
 	}	
 
 	//punto 4
@@ -145,7 +167,42 @@ object castillo{
 
 }
 
+object caterina{
 
+	method poderDePelea(){
+		return 28
+	}
 
+	method morada(){
+		return fortalezaDeAcero
+	}
 
+}
 
+object archibaldo{
+	
+	method poderDePelea(){
+		return 16
+	}
+
+	method morada(){
+		return palacioDeMarmol
+	}
+} 
+
+object astra{ 
+
+	method poderDePelea(){
+		return 14
+	}
+
+	method morada(){
+		return torreDeMarfil
+	}
+}
+
+object torreDeMarfil{}
+
+object fortalezaDeAcero{}
+
+object palacioDeMarmol{}
