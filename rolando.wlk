@@ -5,20 +5,18 @@ object erethia{
 		return enemigos
 	}
 
-//debo hacer un bloque donde veo si un enemigo en particular es vencible
 
 	method enemigosVencibles(personaje){
-		return enemigos.filter({enemigo => enemigo.poderDePelea() < personaje.poderDePelea()})
-	}//y usar ese bloque aca
+		return enemigos.filter({enemigo => personaje.puedeVencer(enemigo)})
+	}
 
 	method moradasConquistables(personaje){
 		return self.enemigosVencibles(personaje).map({enemigo => enemigo.morada()})
 	}
 
 	method esPoderoso(personaje) {
-		return self.enemigosVencibles(personaje).length() == enemigos.length()
-	}//y aca al modificar esto para usar directamente el .all()
-	//.all()
+		return personaje.enemigos().all({enemigo => personaje.puedeVencer(enemigo)})
+	}
 }
 
 object rolando{
@@ -28,6 +26,9 @@ object rolando{
 	var encuentros = []
 	var poderBase = 5
 
+method puedeVencer(enemigo){
+	return enemigo.poderDePelea() < self.poderDePelea()
+}
 
 	method batallar(){
 		poderBase += 1
